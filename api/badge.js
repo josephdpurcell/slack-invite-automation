@@ -9,14 +9,14 @@ module.exports = (req, res) => {
       token: config.slacktoken,
       presence: true
     }
-  }, function(err, httpResponse, body) {
+  }, function(err, httpResponse, jsonBody) {
     try {
-      body = JSON.parse(body);
+      body = JSON.parse(jsonBody);
     } catch(e) {
-      return res.status(404).send('Unable to parse body ' + body);
+      return res.status(404).send('Unable to parse body ' + jsonBody);
     }
     if (!body.members) {
-      return res.status(404).send('No members found ' + body);
+      return res.status(404).send('No members found ' + jsonBody);
     }
 
     const members = body.members.filter(function(m) {
