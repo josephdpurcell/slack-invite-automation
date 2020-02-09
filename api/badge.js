@@ -13,10 +13,10 @@ module.exports = (req, res) => {
     try {
       body = JSON.parse(body);
     } catch(e) {
-      return res.status(404).send('');
+      return res.status(404).send('Unable to parse body ' + body);
     }
     if (!body.members) {
-      return res.status(404).send('');
+      return res.status(404).send('No members found ' + body);
     }
 
     const members = body.members.filter(function(m) {
